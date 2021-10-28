@@ -28,12 +28,13 @@ else:
     bc = "grey18"
     fc = "white"
 
+"""
 
 class Win(Tk):
 
     def __init__(self,master=None):
         Tk.__init__(self,master)
-        self.overrideredirect(True)
+        self.overrideredirect(0)
         self._offsetx = 0
         self._offsety = 0
         self.bind('<Button-1>',self.clickwin)
@@ -47,9 +48,10 @@ class Win(Tk):
     def clickwin(self,event):
         self._offsetx = event.x
         self._offsety = event.y
+"""
 
-
-win = Win()
+#win = Win()
+win = Tk()
 
 
 windowWidth = 600
@@ -58,12 +60,13 @@ win.geometry(str(windowWidth)+"x"+str(windowHeight))
 positionRight = int(win.winfo_screenwidth()/2 - windowWidth/2)
 positionDown = int(win.winfo_screenheight()/2 - windowHeight/2)
 win.geometry("+{}+{}".format(positionRight, positionDown))
+win.title("VariaLink")
 win.configure(bg=bgc)
 win.resizable(width=False, height=False)
-win.iconbitmap('data/links.ico')
+win.iconbitmap('data/varia.ico')
 
-xb = Button(win, text="x", width=3, bg=bgc, fg=fc, font=('arial', 25, 'bold'), borderwidth=0, highlightthickness=0, activebackground=bgc, command=win.destroy)
-xb.place(x=windowWidth, y=0, anchor="ne")
+#xb = Button(win, text="x", width=3, bg=bgc, fg=fc, font=('arial', 25, 'bold'), borderwidth=0, highlightthickness=0, activebackground=bgc, command=win.destroy)
+#xb.place(x=windowWidth, y=0, anchor="ne")
 
 
 if int(str(line[9])):
@@ -118,6 +121,10 @@ notice_photo = Image.open(str(directory+"notice_lrg.png"))
 notice_r = notice_photo.resize((width_i, height_i), Image.ANTIALIAS)
 notice_image = ImageTk.PhotoImage(notice_r)
 
+v_logo = Image.open(str(directory+"varia_logo.png"))
+v_logo_r = v_logo.resize((100, 100), Image.ANTIALIAS)
+v_logo_image = ImageTk.PhotoImage(v_logo_r)
+
 
 # Buttons
 b_width = 14
@@ -142,7 +149,6 @@ zoom.place(x=b_col, y=row3, anchor="center")
 noticeboard = Button(button_frame, image=notice_image, bg=bc, borderwidth=0, highlightthickness=0, activebackground=bgc, command=notice)
 noticeboard.place(x=b_col, y=row4, anchor="center")
 
-
 # Time frame
 def timed():
     string = strftime('%I:%M:%S %p\n\n%A\n%d %B\n%Y')
@@ -156,6 +162,9 @@ clock_text.place(x=str(200/2), y=100, anchor="center")
 
 mytitle = Label(win, text=str(line[1]), font=('calibri', 25, 'bold'), bg=bgc, fg=fc)
 mytitle.place(x=30, y=10, anchor="nw")
+
+logo = Label(win, image=v_logo_image, bg=bgc)
+logo.place(x=windowWidth-30, y=windowHeight-30, anchor="se")
 
 if __name__ == '__main__':
     timed()

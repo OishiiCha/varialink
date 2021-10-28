@@ -23,7 +23,7 @@ setwindow.title("Settings")
 setwindow.configure(background=bgc)
 setwindow.resizable(width=False, height=False)
 if cpc == 1:
-    setwindow.iconbitmap('data/links.ico')
+    setwindow.iconbitmap('data/varia.ico')
 
 # rows
 row1 = 25

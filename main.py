@@ -53,13 +53,14 @@ win = Win()
 
 
 windowWidth = 600
-windowHeight = 500
+windowHeight = 520
 win.geometry(str(windowWidth)+"x"+str(windowHeight))
 positionRight = int(win.winfo_screenwidth()/2 - windowWidth/2)
 positionDown = int(win.winfo_screenheight()/2 - windowHeight/2)
 win.geometry("+{}+{}".format(positionRight, positionDown))
 win.configure(bg=bgc)
 win.resizable(width=False, height=False)
+win.iconbitmap('data/links.ico')
 
 xb = Button(win, text="x", width=3, bg=bgc, fg=fc, font=('arial', 25, 'bold'), borderwidth=0, highlightthickness=0, activebackground=bgc, command=win.destroy)
 xb.place(x=windowWidth, y=0, anchor="ne")
@@ -121,7 +122,7 @@ notice_image = ImageTk.PhotoImage(notice_r)
 # Buttons
 b_width = 14
 button_frame = Frame(win, height=450, width=330, bg=bgc)
-button_frame.place(x=190, y=250, anchor="center")
+button_frame.place(x=190, y=275, anchor="center")
 
 row1 = int((450/30)*5)
 row2 = int((450/30)*12)
@@ -150,8 +151,11 @@ def timed():
 
 tframe = Frame(win, height=300, width=200, bg=bgc)
 tframe.place(x=480, y=int(windowHeight/2), anchor="center")
-clock_text = Label(tframe, bg=bgc, fg=fc, font=('calibri', 25, 'bold'))
+clock_text = Label(tframe, bg=bgc, fg=fc, font=('calibri', 25))
 clock_text.place(x=str(200/2), y=100, anchor="center")
+
+mytitle = Label(win, text=str(line[1]), font=('calibri', 25, 'bold'), bg=bgc, fg=fc)
+mytitle.place(x=30, y=10, anchor="nw")
 
 if __name__ == '__main__':
     timed()

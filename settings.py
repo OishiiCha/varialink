@@ -15,6 +15,7 @@ else:
 
 
 bgc = "light grey"
+fc = "black"
 
 setwindow = Tk()
 setwindow.geometry("700x300")
@@ -85,13 +86,17 @@ def read():
         client = "Zoom App"
     if int(line[11]) == 1:
         mode = "Light Mode"
+        bgc = "light grey"
+        fc = "black"
     else:
         mode = "Dark Mode"
+        bgc = "grey12"
+        fc = "white"
 
     c_cong = Label(setwindow,
                    text=cong,
                    bg=bgc,
-                   fg="black",
+                   fg=fc,
                    justify="center",
                    font=l_font,
                    width=30)
@@ -102,7 +107,7 @@ def read():
     c_mw_id = Label(setwindow,
                     text=mw_id,
                     bg=bgc,
-                    fg="black",
+                    fg=fc,
                     justify="center",
                     font=l_font,
                     width=30)
@@ -113,7 +118,7 @@ def read():
     c_we_id = Label(setwindow,
                     text=we_id,
                     bg=bgc,
-                    fg="black",
+                    fg=fc,
                     justify="center",
                     font=l_font,
                     width=30)
@@ -124,7 +129,7 @@ def read():
     c_nbl = Label(setwindow,
                   text=nbl,
                   bg=bgc,
-                  fg="black",
+                  fg=fc,
                   justify="center",
                   font=l_font,
                   width=30)
@@ -135,7 +140,7 @@ def read():
     c_client = Label(setwindow,
                      text=client,
                      bg=bgc,
-                     fg="black",
+                     fg=fc,
                      justify="center",
                      font=l_font,
                      width=30)
@@ -146,13 +151,24 @@ def read():
     c_cm = Label(setwindow,
                  text=mode,
                  bg=bgc,
-                 fg="black",
+                 fg=fc,
                  justify="center",
                  font=l_font,
                  width=30)
     c_cm.place(x=column_c,
                y=row7,
                anchor="center")
+    cong_l.config(bg=bgc, fg=fc)
+    zml.config(bg=bgc, fg=fc)
+    zwl.config(bg=bgc, fg=fc)
+    nbt.config(bg=bgc, fg=fc)
+    client_l.config(bg=bgc, fg=fc)
+    mode_l.config(bg=bgc, fg=fc)
+    entbutton.config(bg=bgc, fg=fc)
+    setwindow.config(bg=bgc)
+    frame1.config(bg=bgc, fg=fc)
+    frame2.config(bg=bgc, fg=fc)
+
 
 def setconfig():
     if os.path.isfile(file):

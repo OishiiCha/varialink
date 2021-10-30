@@ -7,15 +7,25 @@ import calendar
 import csv
 
 # Data
-filename = "data/data.csv"
-lines = []
+cong_f = 'data/data_txt/cong_name.txt'
+zmw_f = 'data/data_txt/midweek_id.txt'
+zwe_f = 'data/data_txt/weekend_id.txt'
+nbl_f = 'data/data_txt/noticeboard_link.txt'
+cl_f = 'data/data_txt/zoom_client.txt'
+cm_f = 'data/data_txt/colour_mode.txt'
 
-with open(filename, 'r') as csvfile:
-    csvreader = csv.reader(csvfile)
-    for line in csvreader:
-        line.append(line)
+cong = open(cong_f, "r").read()
+mw_id = open(zmw_f, "r").read()
+we_id = open(zwe_f, "r").read()
+nbl = open(nbl_f, "r").read()
+cl_mode = open(cl_f, "r").read()
+cm_mode = open(cm_f, "r").read()
 
-if int(line[11]) == 1:
+if int(cl_mode) == 1:
+    client = "Web Client"
+else:
+    client = "Zoom App"
+if int(cm_mode) == 1:
     mysetting = 1
     directory = "data/icons/light_mode/"
     bgc = "lightsteelblue"
@@ -27,6 +37,7 @@ else:
     bgc = "grey12"
     bc = "grey18"
     fc = "white"
+
 
 """
 
@@ -69,7 +80,7 @@ win.iconbitmap('data/varia.ico')
 #xb.place(x=windowWidth, y=0, anchor="ne")
 
 
-if int(str(line[9])):
+if str(client) == "Web Client":
     web_client = "https://pwa.zoom.us/wc/join/"
 else:
     web_client = "https://pwa.zoom.us/j/"
@@ -83,17 +94,17 @@ def wol():
     webbrowser.open(wol_link, 1)
 
 def zoom_mw():
-    zoom_link = str(web_client+str(line[3]))
+    zoom_link = str(web_client+str(mw_id))
     # https://pwa.zoom.us/wc/join/ --Meeting ID
     webbrowser.open(zoom_link)
 
 def zoom_we():
-    zoom_link = str(web_client+str(line[5]))
+    zoom_link = str(web_client+str(we_id))
     # https://pwa.zoom.us/wc/join/ --Meeting ID
     webbrowser.open(zoom_link)
 
 def notice():
-    notice_link = str(line[7])
+    notice_link = str(nbl)
     webbrowser.open(notice_link)
 
 def meeting_choice():
@@ -160,7 +171,7 @@ tframe.place(x=480, y=int(windowHeight/2), anchor="center")
 clock_text = Label(tframe, bg=bgc, fg=fc, font=('calibri', 25))
 clock_text.place(x=str(200/2), y=100, anchor="center")
 
-mytitle = Label(win, text=str(line[1]), font=('calibri', 25, 'bold'), bg=bgc, fg=fc)
+mytitle = Label(win, text=str(cong), font=('calibri', 25, 'bold'), bg=bgc, fg=fc)
 mytitle.place(x=30, y=10, anchor="nw")
 
 logo = Label(win, image=v_logo_image, bg=bgc)

@@ -4,6 +4,7 @@ from time import strftime
 from PIL import ImageTk, Image
 from datetime import date
 import calendar
+import platform
 
 
 # Data
@@ -51,13 +52,18 @@ win.geometry("+{}+{}".format(positionRight, positionDown))
 win.title("VariaLink")
 win.configure(bg=bgc)
 win.resizable(width=False, height=False)
-win.iconbitmap('data/varia.ico')
+if platform.system() == "Windows":
+    win.iconbitmap('data/varia.ico')
 
 
 if str(client) == "Web Client":
     web_client = "https://pwa.zoom.us/wc/join/"
 else:
     web_client = "https://pwa.zoom.us/j/"
+
+def newsroom_link():
+    news_link = "https://www.jw.org/en/news/jw/"
+    webbrowser.open(news_link, 1)
 
 def jw_org():
     jw_org_link = "https://jw.org"
@@ -106,9 +112,9 @@ notice_photo = Image.open(str(directory+"notice_lrg.png"))
 notice_r = notice_photo.resize((width_i, height_i), Image.ANTIALIAS)
 notice_image = ImageTk.PhotoImage(notice_r)
 
-v_logo = Image.open(str(directory+"varia_logo.png"))
-v_logo_r = v_logo.resize((100, 100), Image.ANTIALIAS)
-v_logo_image = ImageTk.PhotoImage(v_logo_r)
+newsroom_p = Image.open(str(directory+"newsroom.png"))
+newsroom_r = newsroom_p.resize((80, 80), Image.ANTIALIAS)
+newsroom_image = ImageTk.PhotoImage(newsroom_r)
 
 
 # Buttons
@@ -148,8 +154,8 @@ clock_text.place(x=str(200/2), y=100, anchor="center")
 mytitle = Label(win, text=str(cong), font=('calibri', 25, 'bold'), bg=bgc, fg=fc)
 mytitle.place(x=30, y=10, anchor="nw")
 
-logo = Label(win, image=v_logo_image, bg=bgc)
-logo.place(x=windowWidth-30, y=windowHeight-30, anchor="se")
+nr = Button(win, image=newsroom_image, bg=bgc, borderwidth=0, highlightthickness=0, activebackground=bgc, command=newsroom_link)
+nr.place(x=windowWidth-30, y=windowHeight-30, anchor="se")
 
 if __name__ == '__main__':
     timed()

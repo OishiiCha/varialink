@@ -204,5 +204,5 @@ entbutton = Button(setwindow, text="Set new data", justify="center", font=('aria
 entbutton.place(x=column_s, y=row8, anchor="center")
 
 if __name__ == '__main__':
-    #read()
+    read()
     setwindow.mainloop()

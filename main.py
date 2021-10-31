@@ -148,10 +148,14 @@ def timed():
 
 tframe = Frame(win, height=300, width=200, bg=bgc)
 tframe.place(x=480, y=int(windowHeight/2), anchor="center")
-clock_text = Label(tframe, bg=bgc, fg=fc, font=('calibri', 25))
+clock_text = Label(tframe, bg=bgc, fg=fc, font=('calibri', 20))
+if platform.system() == "Windows":
+    clock_text.config(font=('calibri', 25))
 clock_text.place(x=str(200/2), y=100, anchor="center")
 
-mytitle = Label(win, text=str(cong), font=('calibri', 25, 'bold'), bg=bgc, fg=fc)
+mytitle = Label(win, text=str(cong), font=('calibri', 20, 'bold'), bg=bgc, fg=fc)
+if platform.system() == "Windows":
+    mytitle.config(font=('calibri', 25))
 mytitle.place(x=30, y=10, anchor="nw")
 
 nr = Button(win, image=newsroom_image, bg=bgc, borderwidth=0, highlightthickness=0, activebackground=bgc, command=newsroom_link)
